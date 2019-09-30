@@ -1,4 +1,4 @@
-name: 'Trigger Jenkins Job'
+name: 'Trigger Jenkins Multiple Job'
 description: 'Triggering Jenkins Job through the API'
 author: 'Bo-Yi Wu'
 inputs:
