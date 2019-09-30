@@ -1,6 +1,6 @@
 # 🚀 Trigger Jenkins Job for GitHub Actions
 
-[GitHub Action](https://developer.github.com/actions/) for trigger [jenkins](https://jenkins.io/) jobs.
+[GitHub Action](https://github.com/features/actions) for trigger [jenkins](https://jenkins.io/) jobs.
 
 ![jenkins](./images/trigger-jenkins.png)
 
