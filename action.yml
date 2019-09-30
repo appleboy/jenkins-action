@@ -1,0 +1,19 @@
+name: 'Trigger Jenkins Job'
+description: 'Triggering Jenkins Job through the API'
+author: 'Bo-Yi Wu'
+inputs:
+  url:
+    description: 'jenkins base url'
+  user:
+    description: 'jenkins username'
+  token:
+    description: 'jenkins api token'
+  job:
+    description: 'jenkins job'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+
+branding:
+  icon: 'check-circle'
+  color: 'green'
