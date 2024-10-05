@@ -63,3 +63,4 @@ Trigger multiple jenkins job:
 * user - Required. jenkins user.
 * job - Required. jenkins job name.
 * token - Required. jenkins api token.
+* insecure - Optional. Allow insecure server connections when using SSL. Default is `false`.
