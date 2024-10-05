@@ -1,19 +1,22 @@
-name: 'Trigger Jenkins Multiple Jobs'
-description: 'Triggering Jenkins Job through the API'
-author: 'Bo-Yi Wu'
+name: "Trigger Jenkins Multiple Jobs"
+description: "Triggering Jenkins Job through the API"
+author: "Bo-Yi Wu"
 inputs:
   url:
-    description: 'jenkins base url'
+    description: "jenkins base url"
   user:
-    description: 'jenkins username'
+    description: "jenkins username"
   token:
-    description: 'jenkins api token'
+    description: "jenkins api token"
   job:
-    description: 'jenkins job'
+    description: "jenkins job"
+  insecure:
+    description: "insecure skip verify"
+    default: "false"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
 
 branding:
-  icon: 'check-circle'
-  color: 'green'
+  icon: "check-circle"
+  color: "green"
