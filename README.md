@@ -57,6 +57,19 @@ Trigger multiple jenkins job:
     job: "job_1,job_2"
 ```
 
+Trigger jenkins job with parameter:
+
+```yaml
+- name: trigger Job with parameter
+  uses: appleboy/jenkins-action@master
+  with:
+    url: "http://example.com"
+    user: "example"
+    token: ${{ secrets.TOKEN }}
+    job: "job_1"
+    parameter: "param1=value1,param2=value2"
+```
+
 ## Input variables
 
 * url - Required. jenkins base url.
@@ -64,3 +77,4 @@ Trigger multiple jenkins job:
 * job - Required. jenkins job name.
 * token - Required. jenkins api token.
 * insecure - Optional. Allow insecure server connections when using SSL. Default is `false`.
+* parameter - Optional. jenkins job parameter, example: `param1=value1,param2=value2`.
