@@ -32,7 +32,7 @@ Setup the Jenkins server using the docker command:
 
 ```sh
 docker run \
-  --name jenkins \
+  --name jenkins-docker \
   -d --restart always \
   -p 8080:8080 -p 50000:50000 \
   -v /data/jenkins:/var/jenkins_home \
