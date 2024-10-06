@@ -49,7 +49,7 @@ Trigger multiple jenkins job:
 
 ```yaml
 - name: trigger multiple Job
-  uses: appleboy/jenkins-action@master
+  uses: appleboy/jenkins-action@v1.1.1
   with:
     url: "http://example.com"
     user: "example"
@@ -61,7 +61,7 @@ Trigger jenkins job with parameter:
 
 ```yaml
 - name: trigger Job with parameter
-  uses: appleboy/jenkins-action@master
+  uses: appleboy/jenkins-action@v1.1.1
   with:
     url: "http://example.com"
     user: "example"
