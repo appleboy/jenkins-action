@@ -5,19 +5,26 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: trigger single Job
-        uses: appleboy/jenkins-action@master
+      - name: trigger Job without parameters
+        uses: appleboy/jenkins-action@v1.1.1
         with:
-          url: "http://example.com"
-          user: "example"
+          url: https://jenkins.com
+          user: jenkins
           token: ${{ secrets.TOKEN }}
-          job: "foobar"
+          job: AIDE_TEST
+          insecure: true
 
-      - name: trigger multiple Job
-        uses: appleboy/jenkins-action@master
+      - name: set random word
+        id: random-word
+        run: |
+          echo TEST1234=$(openssl rand -hex 12) >> $GITHUB_OUTPUT
+
+      - name: trigger Job with parameters
+        uses: appleboy/jenkins-action@v1.1.1
         with:
-          url: "http://example.com"
-          user: "example"
+          url: https://jenkins.com
+          user: jenkins
           token: ${{ secrets.TOKEN }}
-          job: "job_1,job_2"
-          insecure: "true"
+          job: AIDE_TEST2
+          insecure: true
+          parameters: parameter01=${{ steps.random-word.outputs.TEST1234 }}

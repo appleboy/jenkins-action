@@ -67,7 +67,7 @@ Trigger jenkins job with parameter:
     user: "example"
     token: ${{ secrets.TOKEN }}
     job: "job_1"
-    parameter: "param1=value1,param2=value2"
+    parameters: "param1=value1,param2=value2"
 ```
 
 ## Input variables
@@ -77,4 +77,4 @@ Trigger jenkins job with parameter:
 * job - Required. jenkins job name.
 * token - Required. jenkins api token.
 * insecure - Optional. Allow insecure server connections when using SSL. Default is `false`.
-* parameter - Optional. jenkins job parameter, example: `param1=value1,param2=value2`.
+* parameters - Optional. jenkins job parameter, example: `param1=value1,param2=value2`.

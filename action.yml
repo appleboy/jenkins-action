@@ -13,7 +13,7 @@ inputs:
   insecure:
     description: "insecure skip verify"
     default: "false"
-  parameter:
+  parameters:
     description: "jenkins job parameters"
 runs:
   using: "docker"
