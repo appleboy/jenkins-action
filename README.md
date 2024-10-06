@@ -39,7 +39,9 @@ docker run \
   jenkins/jenkins:lts
 ```
 
-Please make sure that you create the `/data/jenkins` before starting the Jenkins. Create the new API token as below:
+Please make sure that you create the `/data/jenkins` before starting the Jenkins.
+
+Go to user profile and click on `Configure`:
 
 ![jenkins](./images/register-token.png)
 
@@ -51,10 +53,10 @@ Trigger multiple jenkins job:
 - name: trigger multiple Job
   uses: appleboy/jenkins-action@v1.1.1
   with:
-    url: "http://example.com"
-    user: "example"
+    url: http://example.com
+    user: example
     token: ${{ secrets.TOKEN }}
-    job: "job_1,job_2"
+    job: job_1,job_2
 ```
 
 Trigger jenkins job with parameter:
@@ -63,11 +65,11 @@ Trigger jenkins job with parameter:
 - name: trigger Job with parameter
   uses: appleboy/jenkins-action@v1.1.1
   with:
-    url: "http://example.com"
-    user: "example"
+    url: http://example.com
+    user: example
     token: ${{ secrets.TOKEN }}
-    job: "job_1"
-    parameters: "param1=value1,param2=value2"
+    job: job_1
+    parameters: param1=value1,param2=value2
 ```
 
 ## Input variables
