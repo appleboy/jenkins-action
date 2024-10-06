@@ -41,7 +41,7 @@ docker run \
 
 Please make sure that you create the `/data/jenkins` before starting the Jenkins. Create the new API token as below:
 
-![jenkins](./images/jenkins-token.png)
+![jenkins](./images/register-token.png)
 
 ## Example
 
