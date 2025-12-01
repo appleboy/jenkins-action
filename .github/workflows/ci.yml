@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: trigger Job without parameters
-        uses: appleboy/jenkins-action@v1.1.1
+        uses: ./
         with:
           url: https://jenkins.com
           user: jenkins
@@ -20,7 +20,7 @@ jobs:
           echo TEST1234=$(openssl rand -hex 12) >> $GITHUB_OUTPUT
 
       - name: trigger Job with parameters
-        uses: appleboy/jenkins-action@v1.1.1
+        uses: ./
         with:
           url: https://jenkins.com
           user: jenkins
