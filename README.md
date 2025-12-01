@@ -53,7 +53,7 @@ Trigger multiple jenkins job:
 
 ```yaml
 - name: trigger multiple Job
-  uses: appleboy/jenkins-action@v1.1.1
+  uses: appleboy/jenkins-action@v1
   with:
     url: http://example.com
     user: example
@@ -65,7 +65,7 @@ Trigger jenkins job with parameters:
 
 ```yaml
 - name: trigger Job with parameters
-  uses: appleboy/jenkins-action@v1.1.1
+  uses: appleboy/jenkins-action@v1
   with:
     url: http://example.com
     user: example
@@ -78,7 +78,7 @@ Trigger jenkins job using remote token:
 
 ```yaml
 - name: trigger Job with remote token
-  uses: appleboy/jenkins-action@v1.1.1
+  uses: appleboy/jenkins-action@v1
   with:
     url: http://example.com
     remote_token: ${{ secrets.REMOTE_TOKEN }}
@@ -89,7 +89,7 @@ Wait for job completion with custom timeout:
 
 ```yaml
 - name: trigger Job and wait for completion
-  uses: appleboy/jenkins-action@v1.1.1
+  uses: appleboy/jenkins-action@v1
   with:
     url: http://example.com
     user: example
