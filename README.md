@@ -59,10 +59,10 @@ Trigger multiple jenkins job:
     job: job_1,job_2
 ```
 
-Trigger jenkins job with parameter:
+Trigger jenkins job with parameters:
 
 ```yaml
-- name: trigger Job with parameter
+- name: trigger Job with parameters
   uses: appleboy/jenkins-action@v1.1.1
   with:
     url: http://example.com
@@ -72,11 +72,45 @@ Trigger jenkins job with parameter:
     parameters: param1=value1,param2=value2
 ```
 
+Trigger jenkins job using remote token:
+
+```yaml
+- name: trigger Job with remote token
+  uses: appleboy/jenkins-action@v1.1.1
+  with:
+    url: http://example.com
+    remote_token: ${{ secrets.REMOTE_TOKEN }}
+    job: job_1
+```
+
+Wait for job completion with custom timeout:
+
+```yaml
+- name: trigger Job and wait for completion
+  uses: appleboy/jenkins-action@v1.1.1
+  with:
+    url: http://example.com
+    user: example
+    token: ${{ secrets.TOKEN }}
+    job: job_1
+    wait: true
+    poll_interval: 5s
+    timeout: 60m
+```
+
 ## Input variables
 
-* url - Required. jenkins base url.
-* user - Required. jenkins user.
-* job - Required. jenkins job name.
-* token - Required. jenkins api token.
-* insecure - Optional. Allow insecure server connections when using SSL. Default is `false`.
-* parameters - Optional. jenkins job parameter, example: `param1=value1,param2=value2`.
+| Parameter      | Required      | Default | Description                                            |
+| -------------- | ------------- | ------- | ------------------------------------------------------ |
+| url            | Yes           |         | Jenkins base URL (e.g., `http://jenkins.example.com/`) |
+| user           | Conditional\* |         | Jenkins username                                       |
+| token          | Conditional\* |         | Jenkins API token                                      |
+| remote_token   | Conditional\* |         | Jenkins remote trigger token                           |
+| job            | Yes           |         | Jenkins job name(s) - can specify multiple             |
+| parameters     | No            |         | Build parameters in `key=value` format                 |
+| insecure       | No            | `false` | Allow insecure SSL connections                         |
+| wait           | No            | `false` | Wait for job completion                                |
+| poll_interval  | No            | `10s`   | Interval between status checks                         |
+| timeout        | No            | `30m`   | Maximum time to wait for job completion                |
+
+> \* **Authentication**: Either `user` + `token` OR `remote_token` is required.
