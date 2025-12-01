@@ -1,5 +1,7 @@
 # 🚀 Trigger Jenkins Job for GitHub Actions
 
+[![Trivy Security Scan](https://github.com/appleboy/jenkins-action/actions/workflows/trivy.yml/badge.svg)](https://github.com/appleboy/jenkins-action/actions/workflows/trivy.yml)
+
 [GitHub Action](https://github.com/features/actions) for trigger [jenkins](https://jenkins.io/) jobs.
 
 ![jenkins](./images/trigger-jenkins.png)
