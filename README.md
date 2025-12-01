@@ -45,7 +45,7 @@ Please make sure that you create the `/data/jenkins` before starting the Jenkins
 
 Go to user profile and click on `Configure`:
 
-![jenkins](./images/register-token.png)
+![jenkins](./images/user-api-token.png)
 
 ## Example
 
