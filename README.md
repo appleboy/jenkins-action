@@ -71,7 +71,11 @@ Trigger jenkins job with parameters:
     user: example
     token: ${{ secrets.TOKEN }}
     job: job_1
-    parameters: param1=value1,param2=value2
+    parameters: |
+      ENVIRONMENT=production
+      VERSION=1.0.0
+      COMMIT_SHA=${{ github.sha }}
+      BRANCH=${{ github.ref_name }}
 ```
 
 Trigger jenkins job using remote token:
@@ -102,17 +106,18 @@ Wait for job completion with custom timeout:
 
 ## Input variables
 
-| Parameter      | Required      | Default | Description                                            |
-| -------------- | ------------- | ------- | ------------------------------------------------------ |
-| url            | Yes           |         | Jenkins base URL (e.g., `http://jenkins.example.com/`) |
-| user           | Conditional\* |         | Jenkins username                                       |
-| token          | Conditional\* |         | Jenkins API token                                      |
-| remote_token   | Conditional\* |         | Jenkins remote trigger token                           |
-| job            | Yes           |         | Jenkins job name(s) - can specify multiple             |
-| parameters     | No            |         | Build parameters in `key=value` format                 |
-| insecure       | No            | `false` | Allow insecure SSL connections                         |
-| wait           | No            | `false` | Wait for job completion                                |
-| poll_interval  | No            | `10s`   | Interval between status checks                         |
-| timeout        | No            | `30m`   | Maximum time to wait for job completion                |
+| Parameter      | Required      | Default | Description                                                          |
+| -------------- | ------------- | ------- | -------------------------------------------------------------------- |
+| url            | Yes           |         | Jenkins base URL (e.g., `http://jenkins.example.com/`)               |
+| user           | Conditional\* |         | Jenkins username                                                     |
+| token          | Conditional\* |         | Jenkins API token                                                    |
+| remote_token   | Conditional\* |         | Jenkins remote trigger token                                         |
+| job            | Yes           |         | Jenkins job name(s) - can specify multiple                           |
+| parameters     | No            |         | Build parameters in multi-line `key=value` format (one per line)     |
+| insecure       | No            | `false` | Allow insecure SSL connections                                       |
+| wait           | No            | `false` | Wait for job completion                                              |
+| poll_interval  | No            | `10s`   | Interval between status checks                                       |
+| timeout        | No            | `30m`   | Maximum time to wait for job completion                              |
+| debug          | No            | `false` | Enable debug mode to show detailed parameter information             |
 
 > \* **Authentication**: Either `user` + `token` OR `remote_token` is required.

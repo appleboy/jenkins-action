@@ -15,19 +15,22 @@ inputs:
     description: "Jenkins job name(s) - can specify multiple"
     required: true
   parameters:
-    description: "Build parameters in key=value format"
+    description: "Build parameters in multi-line key=value format (one per line)"
   insecure:
-    description: "Allow insecure SSL connections"
+    description: "Allow insecure SSL connections (default: false)"
     default: "false"
   wait:
-    description: "Wait for job completion"
+    description: "Wait for job completion (default: false)"
     default: "false"
   poll_interval:
-    description: "Interval between status checks"
+    description: "Interval between status checks (default: 10s)"
     default: "10s"
   timeout:
-    description: "Maximum time to wait for job completion"
+    description: "Maximum time to wait for job completion (default: 30m)"
     default: "30m"
+  debug:
+    description: "Enable debug mode to show detailed parameter information (default: false)"
+    default: "false"
 runs:
   using: "docker"
   image: "Dockerfile"
