@@ -104,6 +104,32 @@ Wait for job completion with custom timeout:
     timeout: 60m
 ```
 
+Use custom CA certificate for self-signed SSL:
+
+```yaml
+- name: trigger Job with custom CA certificate
+  uses: appleboy/jenkins-action@v1
+  with:
+    url: https://jenkins.example.com
+    user: example
+    token: ${{ secrets.TOKEN }}
+    job: job_1
+    ca_cert: ${{ secrets.CA_CERT }}
+```
+
+You can also specify a file path or HTTP URL for the CA certificate:
+
+```yaml
+- name: trigger Job with CA certificate from file
+  uses: appleboy/jenkins-action@v1
+  with:
+    url: https://jenkins.example.com
+    user: example
+    token: ${{ secrets.TOKEN }}
+    job: job_1
+    ca_cert: /path/to/ca-certificate.pem
+```
+
 ## Input variables
 
 | Parameter      | Required      | Default | Description                                                          |
@@ -119,5 +145,6 @@ Wait for job completion with custom timeout:
 | poll_interval  | No            | `10s`   | Interval between status checks                                       |
 | timeout        | No            | `30m`   | Maximum time to wait for job completion                              |
 | debug          | No            | `false` | Enable debug mode to show detailed parameter information             |
+| ca_cert        | No            |         | Custom CA certificate (PEM content, file path, or HTTP URL)          |
 
 > \* **Authentication**: Either `user` + `token` OR `remote_token` is required.

@@ -31,6 +31,8 @@ inputs:
   debug:
     description: "Enable debug mode to show detailed parameter information (default: false)"
     default: "false"
+  ca_cert:
+    description: "Custom CA certificate (PEM content, file path, or HTTP URL)"
 runs:
   using: "docker"
   image: "Dockerfile"
