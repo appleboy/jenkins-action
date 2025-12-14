@@ -1,20 +1,20 @@
-# 🚀 Trigger Jenkins Job for GitHub Actions
+# 🚀 GitHub Actions 觸發 Jenkins 任務
 
 [![Trivy Security Scan](https://github.com/appleboy/jenkins-action/actions/workflows/trivy.yml/badge.svg)](https://github.com/appleboy/jenkins-action/actions/workflows/trivy.yml)
 
-English | [繁體中文](./README.zh-TW.md) | [简体中文](./README.zh-CN.md)
+[English](./README.md) | 繁體中文 | [简体中文](./README.zh-CN.md)
 
-[GitHub Action](https://github.com/features/actions) for trigger [jenkins](https://jenkins.io/) jobs.
+用於觸發 [Jenkins](https://jenkins.io/) 任務的 [GitHub Action](https://github.com/features/actions)。
 
-## Slides
+## 簡報
 
-Check out [Connecting Your Worlds: A Guide to Integrating GitHub Actions and Jenkins](https://speakerdeck.com/appleboy/connecting-your-worlds-a-guide-to-integrating-github-actions-and-jenkins) for more details.
+查看 [Connecting Your Worlds: A Guide to Integrating GitHub Actions and Jenkins](https://speakerdeck.com/appleboy/connecting-your-worlds-a-guide-to-integrating-github-actions-and-jenkins) 了解更多詳情。
 
 ![jenkins](./images/trigger-jenkins.png)
 
-## Usage
+## 使用方式
 
-Trigger New Jenkins Job.
+觸發新的 Jenkins 任務。
 
 ```yaml
 name: trigger jenkins job
@@ -34,9 +34,9 @@ jobs:
         job: "foobar"
 ```
 
-## Jenkins Setting
+## Jenkins 設定
 
-Setup the Jenkins server using the docker command:
+使用 docker 命令設定 Jenkins 伺服器：
 
 ```sh
 docker run \
@@ -47,15 +47,15 @@ docker run \
   jenkins/jenkins:lts
 ```
 
-Please make sure that you create the `/data/jenkins` before starting the Jenkins.
+請確保在啟動 Jenkins 之前建立 `/data/jenkins` 目錄。
 
-Go to user profile and click on `Configure`:
+前往使用者設定檔並點擊 `Configure`：
 
 ![jenkins](./images/user-api-token.png)
 
-## Example
+## 範例
 
-Trigger multiple jenkins job:
+觸發多個 Jenkins 任務：
 
 ```yaml
 - name: trigger multiple Job
@@ -67,7 +67,7 @@ Trigger multiple jenkins job:
     job: job_1,job_2
 ```
 
-Trigger jenkins job with parameters:
+使用參數觸發 Jenkins 任務：
 
 ```yaml
 - name: trigger Job with parameters
@@ -84,7 +84,7 @@ Trigger jenkins job with parameters:
       BRANCH=${{ github.ref_name }}
 ```
 
-Trigger jenkins job using remote token:
+使用遠端 token 觸發 Jenkins 任務：
 
 ```yaml
 - name: trigger Job with remote token
@@ -95,7 +95,7 @@ Trigger jenkins job using remote token:
     job: job_1
 ```
 
-Wait for job completion with custom timeout:
+等待任務完成並自訂逾時時間：
 
 ```yaml
 - name: trigger Job and wait for completion
@@ -110,7 +110,7 @@ Wait for job completion with custom timeout:
     timeout: 60m
 ```
 
-Use custom CA certificate for self-signed SSL:
+使用自訂 CA 憑證（用於自簽 SSL）：
 
 ```yaml
 - name: trigger Job with custom CA certificate
@@ -123,7 +123,7 @@ Use custom CA certificate for self-signed SSL:
     ca_cert: ${{ secrets.CA_CERT }}
 ```
 
-You can also specify a file path or HTTP URL for the CA certificate:
+您也可以指定檔案路徑或 HTTP URL 來載入 CA 憑證：
 
 ```yaml
 - name: trigger Job with CA certificate from file
@@ -136,28 +136,28 @@ You can also specify a file path or HTTP URL for the CA certificate:
     ca_cert: /path/to/ca-certificate.pem
 ```
 
-## Input variables
+## 輸入參數
 
-| Parameter      | Required      | Default | Description                                                          |
-| -------------- | ------------- | ------- | -------------------------------------------------------------------- |
-| url            | Yes           |         | Jenkins base URL (e.g., `http://jenkins.example.com/`)               |
-| user           | Conditional\* |         | Jenkins username                                                     |
-| token          | Conditional\* |         | Jenkins API token                                                    |
-| remote_token   | Conditional\* |         | Jenkins remote trigger token                                         |
-| job            | Yes           |         | Jenkins job name(s) - can specify multiple                           |
-| parameters     | No            |         | Build parameters in multi-line `key=value` format (one per line)     |
-| insecure       | No            | `false` | Allow insecure SSL connections                                       |
-| wait           | No            | `false` | Wait for job completion                                              |
-| poll_interval  | No            | `10s`   | Interval between status checks                                       |
-| timeout        | No            | `30m`   | Maximum time to wait for job completion                              |
-| debug          | No            | `false` | Enable debug mode to show detailed parameter information             |
-| ca_cert        | No            |         | Custom CA certificate (PEM content, file path, or HTTP URL)          |
+| 參數           | 必填          | 預設值  | 說明                                                         |
+| -------------- | ------------- | ------- | ------------------------------------------------------------ |
+| url            | 是            |         | Jenkins 基礎 URL（例如：`http://jenkins.example.com/`）      |
+| user           | 條件式\*      |         | Jenkins 使用者名稱                                           |
+| token          | 條件式\*      |         | Jenkins API token                                            |
+| remote_token   | 條件式\*      |         | Jenkins 遠端觸發 token                                       |
+| job            | 是            |         | Jenkins 任務名稱 - 可指定多個                                |
+| parameters     | 否            |         | 建置參數，多行 `key=value` 格式（每行一個）                  |
+| insecure       | 否            | `false` | 允許不安全的 SSL 連線                                        |
+| wait           | 否            | `false` | 等待任務完成                                                 |
+| poll_interval  | 否            | `10s`   | 狀態檢查間隔                                                 |
+| timeout        | 否            | `30m`   | 等待任務完成的最長時間                                       |
+| debug          | 否            | `false` | 啟用除錯模式以顯示詳細的參數資訊                             |
+| ca_cert        | 否            |         | 自訂 CA 憑證（PEM 內容、檔案路徑或 HTTP URL）                |
 
-> \* **Authentication**: Either `user` + `token` OR `remote_token` is required.
+> \* **認證方式**：需要 `user` + `token` 或 `remote_token` 其中一種。
 
-## Complete Workflow Example
+## 完整工作流程範例
 
-Here's a complete example that demonstrates a real-world CI/CD workflow with conditional triggers, multiple environments, and job status handling:
+以下是一個完整的範例，展示了具有條件觸發、多環境和任務狀態處理的實際 CI/CD 工作流程：
 
 ```yaml
 name: Deploy via Jenkins
@@ -204,9 +204,9 @@ jobs:
 
       - name: Notify on success
         if: success()
-        run: echo "Jenkins job completed successfully!"
+        run: echo "Jenkins 任務執行成功！"
 
       - name: Notify on failure
         if: failure()
-        run: echo "Jenkins job failed!"
+        run: echo "Jenkins 任務執行失敗！"
 ```
