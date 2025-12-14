@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: trigger single Job
-      uses: appleboy/jenkins-action@master
+      uses: appleboy/jenkins-action@v1
       with:
         url: "http://example.com"
         user: "example"
@@ -148,3 +148,59 @@ You can also specify a file path or HTTP URL for the CA certificate:
 | ca_cert        | No            |         | Custom CA certificate (PEM content, file path, or HTTP URL)          |
 
 > \* **Authentication**: Either `user` + `token` OR `remote_token` is required.
+
+## Complete Workflow Example
+
+Here's a complete example that demonstrates a real-world CI/CD workflow with conditional triggers, multiple environments, and job status handling:
+
+```yaml
+name: Deploy via Jenkins
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: Trigger Jenkins Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set environment variables
+        id: vars
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            echo "environment=production" >> $GITHUB_OUTPUT
+            echo "jenkins_job=deploy-prod" >> $GITHUB_OUTPUT
+          else
+            echo "environment=staging" >> $GITHUB_OUTPUT
+            echo "jenkins_job=deploy-staging" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Trigger Jenkins Build and Wait
+        uses: appleboy/jenkins-action@v1
+        with:
+          url: ${{ secrets.JENKINS_URL }}
+          user: ${{ secrets.JENKINS_USER }}
+          token: ${{ secrets.JENKINS_TOKEN }}
+          job: ${{ steps.vars.outputs.jenkins_job }}
+          wait: true
+          timeout: 30m
+          poll_interval: 10s
+          parameters: |
+            ENVIRONMENT=${{ steps.vars.outputs.environment }}
+            VERSION=${{ github.sha }}
+            BRANCH=${{ github.ref_name }}
+            TRIGGERED_BY=${{ github.actor }}
+
+      - name: Notify on success
+        if: success()
+        run: echo "Jenkins job completed successfully!"
+
+      - name: Notify on failure
+        if: failure()
+        run: echo "Jenkins job failed!"
+```
