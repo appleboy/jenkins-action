@@ -4,6 +4,10 @@
 
 [GitHub Action](https://github.com/features/actions) for trigger [jenkins](https://jenkins.io/) jobs.
 
+## Slides
+
+Check out [Connecting Your Worlds: A Guide to Integrating GitHub Actions and Jenkins](https://speakerdeck.com/appleboy/connecting-your-worlds-a-guide-to-integrating-github-actions-and-jenkins) for more details.
+
 ![jenkins](./images/trigger-jenkins.png)
 
 ## Usage
