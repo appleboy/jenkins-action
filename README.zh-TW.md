@@ -10,7 +10,7 @@
 
 查看 [Connecting Your Worlds: A Guide to Integrating GitHub Actions and Jenkins](https://speakerdeck.com/appleboy/connecting-your-worlds-a-guide-to-integrating-github-actions-and-jenkins) 了解更多詳情。
 
-![jenkins](./images/trigger-jenkins.png)
+![jenkins](./images/jenkins-action_1024x572.png)
 
 ## 使用方式
 
@@ -51,7 +51,7 @@ docker run \
 
 前往使用者設定檔並點擊 `Configure`：
 
-![jenkins](./images/user-api-token.png)
+![jenkins](./images/user-api-token_1024x704.png)
 
 ## 範例
 

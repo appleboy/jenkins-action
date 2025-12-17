@@ -10,7 +10,7 @@ English | [繁體中文](./README.zh-TW.md) | [简体中文](./README.zh-CN.md)
 
 Check out [Connecting Your Worlds: A Guide to Integrating GitHub Actions and Jenkins](https://speakerdeck.com/appleboy/connecting-your-worlds-a-guide-to-integrating-github-actions-and-jenkins) for more details.
 
-![jenkins](./images/trigger-jenkins.png)
+![jenkins](./images/jenkins-action_1024x572.png)
 
 ## Usage
 
@@ -51,7 +51,7 @@ Please make sure that you create the `/data/jenkins` before starting the Jenkins
 
 Go to user profile and click on `Configure`:
 
-![jenkins](./images/user-api-token.png)
+![jenkins](./images/user-api-token_1024x704.png)
 
 ## Example
 
