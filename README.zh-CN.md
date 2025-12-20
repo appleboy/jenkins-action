@@ -6,6 +6,18 @@
 
 用于触发 [Jenkins](https://jenkins.io/) 任务的 [GitHub Action](https://github.com/features/actions)。
 
+## 目录
+
+- [🚀 GitHub Actions 触发 Jenkins 任务](#-github-actions-触发-jenkins-任务)
+  - [目录](#目录)
+  - [简报](#简报)
+  - [使用方式](#使用方式)
+  - [Jenkins 设置](#jenkins-设置)
+  - [示例](#示例)
+  - [输入参数](#输入参数)
+  - [输出变量](#输出变量)
+  - [完整工作流程示例](#完整工作流程示例)
+
 ## 简报
 
 查看 [Connecting Your Worlds: A Guide to Integrating GitHub Actions and Jenkins](https://speakerdeck.com/appleboy/connecting-your-worlds-a-guide-to-integrating-github-actions-and-jenkins) 了解更多详情。
@@ -154,6 +166,32 @@ docker run \
 | ca_cert        | 否            |         | 自定义 CA 证书（PEM 内容、文件路径或 HTTP URL）              |
 
 > \* **认证方式**：需要 `user` + `token` 或 `remote_token` 其中一种。
+
+## 输出变量
+
+| 参数   | 说明                                                                     |
+| ------ | ------------------------------------------------------------------------ |
+| result | Jenkins 任务结果（`SUCCESS`、`FAILURE`、`ABORTED`、`UNSTABLE` 或空值）   |
+| url    | Jenkins 任务 URL                                                         |
+
+使用示例：
+
+```yaml
+- name: Trigger Jenkins Job
+  id: jenkins
+  uses: appleboy/jenkins-action@v1
+  with:
+    url: ${{ secrets.JENKINS_URL }}
+    user: ${{ secrets.JENKINS_USER }}
+    token: ${{ secrets.JENKINS_TOKEN }}
+    job: your-job-name
+    wait: true
+
+- name: Use outputs
+  run: |
+    echo "Result: ${{ steps.jenkins.outputs.result }}"
+    echo "URL: ${{ steps.jenkins.outputs.url }}"
+```
 
 ## 完整工作流程示例
 

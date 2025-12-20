@@ -6,6 +6,18 @@ English | [繁體中文](./README.zh-TW.md) | [简体中文](./README.zh-CN.md)
 
 [GitHub Action](https://github.com/features/actions) for trigger [jenkins](https://jenkins.io/) jobs.
 
+## Table of Contents
+
+- [🚀 Trigger Jenkins Job for GitHub Actions](#-trigger-jenkins-job-for-github-actions)
+  - [Table of Contents](#table-of-contents)
+  - [Slides](#slides)
+  - [Usage](#usage)
+  - [Jenkins Setting](#jenkins-setting)
+  - [Example](#example)
+  - [Input variables](#input-variables)
+  - [Output variables](#output-variables)
+  - [Complete Workflow Example](#complete-workflow-example)
+
 ## Slides
 
 Check out [Connecting Your Worlds: A Guide to Integrating GitHub Actions and Jenkins](https://speakerdeck.com/appleboy/connecting-your-worlds-a-guide-to-integrating-github-actions-and-jenkins) for more details.
@@ -154,6 +166,32 @@ You can also specify a file path or HTTP URL for the CA certificate:
 | ca_cert        | No            |         | Custom CA certificate (PEM content, file path, or HTTP URL)          |
 
 > \* **Authentication**: Either `user` + `token` OR `remote_token` is required.
+
+## Output variables
+
+| Parameter | Description                                                                |
+| --------- | -------------------------------------------------------------------------- |
+| result    | Jenkins job result (`SUCCESS`, `FAILURE`, `ABORTED`, `UNSTABLE`, or empty) |
+| url       | Jenkins job URL                                                            |
+
+Usage example:
+
+```yaml
+- name: Trigger Jenkins Job
+  id: jenkins
+  uses: appleboy/jenkins-action@v1
+  with:
+    url: ${{ secrets.JENKINS_URL }}
+    user: ${{ secrets.JENKINS_USER }}
+    token: ${{ secrets.JENKINS_TOKEN }}
+    job: your-job-name
+    wait: true
+
+- name: Use outputs
+  run: |
+    echo "Result: ${{ steps.jenkins.outputs.result }}"
+    echo "URL: ${{ steps.jenkins.outputs.url }}"
+```
 
 ## Complete Workflow Example
 

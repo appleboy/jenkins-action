@@ -33,6 +33,11 @@ inputs:
     default: "false"
   ca_cert:
     description: "Custom CA certificate (PEM content, file path, or HTTP URL)"
+outputs:
+  result:
+    description: "Jenkins job result (SUCCESS, FAILURE, ABORTED, UNSTABLE, or empty if still building)"
+  url:
+    description: "Jenkins job URL"
 runs:
   using: "docker"
   image: "Dockerfile"
