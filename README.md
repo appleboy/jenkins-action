@@ -40,7 +40,7 @@ By connecting modern GitHub Actions or Gitea Actions workflows with existing Jen
 
 Check out [Connecting Your Worlds: A Guide to Integrating GitHub Actions and Jenkins](https://speakerdeck.com/appleboy/connecting-your-worlds-a-guide-to-integrating-github-actions-and-jenkins) for more details.
 
-![jenkins](./images/jenkins-action_1024x572.png)
+![jenkins](./images/jenkins-en_800x600.png)
 
 ## Usage
 

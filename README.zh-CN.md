@@ -40,7 +40,7 @@
 
 查看 [Connecting Your Worlds: A Guide to Integrating GitHub Actions and Jenkins](https://speakerdeck.com/appleboy/connecting-your-worlds-a-guide-to-integrating-github-actions-and-jenkins) 了解更多详情。
 
-![jenkins](./images/jenkins-action_1024x572.png)
+![jenkins](./images/jenkins-zh_800x600.png)
 
 ## 使用方式
 
