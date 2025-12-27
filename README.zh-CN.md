@@ -13,6 +13,11 @@
   - [简报](#简报)
   - [使用方式](#使用方式)
   - [Jenkins 设置](#jenkins-设置)
+  - [身份验证与 CSRF 保护](#身份验证与-csrf-保护)
+    - [了解 Jenkins 的 CSRF 保护](#了解-jenkins-的-csrf-保护)
+    - [认证方式](#认证方式)
+      - [1. 用户 + API Token（推荐）](#1-用户--api-token推荐)
+      - [2. 远程 Token（旧版）](#2-远程-token旧版)
   - [示例](#示例)
   - [输入参数](#输入参数)
   - [输出变量](#输出变量)
@@ -64,6 +69,69 @@ docker run \
 前往用户配置文件并点击 `Configure`：
 
 ![jenkins](./images/user-api-token_1024x704.png)
+
+## 身份验证与 CSRF 保护
+
+### 了解 Jenkins 的 CSRF 保护
+
+CSRF（跨站请求伪造）保护使用在 Jenkins 中称为 **crumb** 的 token。此 crumb 由 Jenkins 创建并发送给用户。任何表单提交或导致修改的操作（如触发构建或更改配置）都需要提供 crumb。crumb 包含识别其创建对象的用户信息，因此使用其他用户 token 的提交将被拒绝。所有这些都在后台进行，除了在极少数情况下（例如用户的 session 过期并重新登录后）外，不会产生可见的影响。
+
+### 认证方式
+
+此 action 支持两种认证方式：
+
+#### 1. 用户 + API Token（推荐）
+
+```yaml
+- name: trigger with user authentication
+  uses: appleboy/jenkins-action@v1
+  with:
+    url: http://example.com
+    user: example
+    token: ${{ secrets.TOKEN }}
+    job: job_1
+```
+
+**运作方式：**
+
+- 使用 Jenkins 用户名和 API token 进行认证
+- **自动处理 CSRF 保护**，会获取并包含 crumb token
+- action 会额外调用 `/crumbIssuer/api/json` API 来获取 crumb
+- crumb 会被包含在所有后续的请求中
+- 更安全且推荐在大多数情况下使用
+
+**何时使用：**
+
+- 默认启用 CSRF 保护的标准 Jenkins 安装
+- 需要完整 API 访问和安全性时
+- 生产环境
+
+#### 2. 远程 Token（旧版）
+
+```yaml
+- name: trigger with remote token
+  uses: appleboy/jenkins-action@v1
+  with:
+    url: http://example.com
+    remote_token: ${{ secrets.REMOTE_TOKEN }}
+    job: job_1
+```
+
+**运作方式：**
+
+- 使用 Jenkins 任务特定的远程触发 token
+- **绕过 CSRF 保护** - 不需要 crumb token
+- 在 Jenkins 任务配置中的"构建触发器">"远程触发构建"进行配置
+- 较不安全，因为只需要知道任务名称和远程 token
+
+**何时使用：**
+
+- 停用 CSRF 保护的 Jenkins 实例
+- 旧版系统或特定安全需求
+- 仅需要触发特定任务而不需要完整 API 访问权限时
+- 无法处理 crumb token 的外部系统
+
+**注意：** 远程 token 认证被认为较不安全，应谨慎使用。推荐在大多数情况下使用"用户 + API token"认证方式。
 
 ## 示例
 
