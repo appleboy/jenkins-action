@@ -1,4 +1,4 @@
-FROM ghcr.io/appleboy/drone-jenkins:1.8.0
+FROM ghcr.io/appleboy/drone-jenkins:1.9.0
 
 COPY entrypoint.sh /entrypoint.sh
 
