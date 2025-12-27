@@ -10,6 +10,7 @@
 
 - [🚀 GitHub Actions 觸發 Jenkins 任務](#-github-actions-觸發-jenkins-任務)
   - [目錄](#目錄)
+  - [為什麼要使用 Jenkins Action？](#為什麼要使用-jenkins-action)
   - [簡報](#簡報)
   - [使用方式](#使用方式)
   - [Jenkins 設定](#jenkins-設定)
@@ -22,6 +23,18 @@
   - [輸入參數](#輸入參數)
   - [輸出變數](#輸出變數)
   - [完整工作流程範例](#完整工作流程範例)
+
+## 為什麼要使用 Jenkins Action？
+
+在許多企業內部，不同團隊各自使用不同的 CI/CD 平台。舊有系統多半仍在 Jenkins 上運行，而 GitHub Actions 和 Gitea Actions 等現代化平台則提供了更強大的功能與更佳的開發體驗。這造成了一個兩難：團隊想要採用新工具，卻無法捨棄既有的 Jenkins 基礎設施。
+
+**Jenkins Action 正是為了解決這個問題而生。** 它在現代 CI/CD 平台與 Jenkins 之間建立了無縫橋接，讓團隊能夠：
+
+- **按照自己的步調遷移** - 立即開始使用 GitHub Actions 或 Gitea Actions，同時保留對既有 Jenkins 任務的調用，無需立即改寫
+- **跨平台協作** - 不同團隊可以使用各自偏好的工具，同時維持系統間的互通性
+- **消除採用障礙** - 解決「要嘛全換、要嘛不換」的困境，讓團隊能夠逐步現代化
+
+透過串接現代化的 GitHub Actions 或 Gitea Actions 工作流程與既有的 Jenkins 基礎設施，這個 action 為組織提供了一條實際可行、低風險的 CI/CD 現代化路徑。
 
 ## 簡報
 

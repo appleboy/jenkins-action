@@ -10,6 +10,7 @@ English | [繁體中文](./README.zh-TW.md) | [简体中文](./README.zh-CN.md)
 
 - [🚀 Trigger Jenkins Job for GitHub Actions](#-trigger-jenkins-job-for-github-actions)
   - [Table of Contents](#table-of-contents)
+  - [Why Jenkins Action?](#why-jenkins-action)
   - [Slides](#slides)
   - [Usage](#usage)
   - [Jenkins Setting](#jenkins-setting)
@@ -22,6 +23,18 @@ English | [繁體中文](./README.zh-TW.md) | [简体中文](./README.zh-CN.md)
   - [Input variables](#input-variables)
   - [Output variables](#output-variables)
   - [Complete Workflow Example](#complete-workflow-example)
+
+## Why Jenkins Action?
+
+In many organizations, different teams operate on different CI/CD platforms. While legacy systems continue to run on Jenkins, modern platforms like GitHub Actions and Gitea Actions offer superior features and developer experience. This creates a dilemma: teams want to modernize their workflows, but can't afford to abandon existing Jenkins infrastructure.
+
+**Jenkins Action bridges this gap.** It provides seamless integration between modern CI/CD platforms and Jenkins, enabling teams to:
+
+- **Migrate at your own pace** - Start using GitHub Actions or Gitea Actions today while still leveraging existing Jenkins jobs, no immediate rewrite required
+- **Work across platforms** - Different teams can use their preferred tools while maintaining interoperability
+- **Remove adoption barriers** - Eliminate the "all-or-nothing" problem that prevents teams from modernizing
+
+By connecting modern GitHub Actions or Gitea Actions workflows with existing Jenkins infrastructure, this action provides organizations with a practical, low-risk path toward CI/CD modernization.
 
 ## Slides
 
