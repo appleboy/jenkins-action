@@ -76,6 +76,8 @@ docker run \
 
 CSRF（跨站請求偽造）保護使用在 Jenkins 中稱為 **crumb** 的 token。此 crumb 由 Jenkins 建立並傳送給使用者。任何表單提交或導致修改的動作（如觸發建置或變更設定）都需要提供 crumb。crumb 包含識別其建立對象的使用者資訊，因此使用其他使用者 token 的提交將被拒絕。所有這些都在背景中進行，除了在極少數情況下（例如使用者的 session 過期並重新登入後）外，不會產生可見的影響。
 
+更多詳情請參閱 [Jenkins CSRF Protection 文件](https://www.jenkins.io/doc/book/security/csrf-protection/)。
+
 ### 認證方式
 
 此 action 支援兩種認證方式：

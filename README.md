@@ -75,6 +75,8 @@ Go to user profile and click on `Configure`:
 
 CSRF (Cross-Site Request Forgery) protection uses a token called **crumb** in Jenkins. This crumb is created by Jenkins and sent to the user. Any form submissions or actions resulting in modifications (like triggering builds or changing configuration) require that the crumb be provided. The crumb contains information identifying the user it was created for, so submissions with another user's token would be rejected. All of this happens in the background and has no visible impact except in rare circumstances, such as after a user's session expired and they logged in again.
 
+For more details, see the [Jenkins CSRF Protection documentation](https://www.jenkins.io/doc/book/security/csrf-protection/).
+
 ### Authentication Methods
 
 This action supports two authentication methods:
